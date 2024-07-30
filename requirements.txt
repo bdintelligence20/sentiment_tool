@@ -1,1 +1,8 @@
 streamlit
+pandas
+vaderSentiment
+wordcloud
+matplotlib
+plotly
+openai
+python-dotenv
