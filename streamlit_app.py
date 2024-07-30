@@ -133,12 +133,7 @@ def main():
 
         text_columns = st.multiselect(
             "Select text columns for analysis",
-            data.columns.tolist(),
-            default=[
-                'In your feedback, please capture a summary of the Case Study lessons that resonated with the participants, as well as the key points of reflection that they would take back to the business and the...',
-                'In your feedback, please capture a summary of the Case Study lessons that resonated with the participants, as well as the key points of reflection that they would take back to the business and the...2',
-                'Please share with us your overall reflections of the session.'
-            ]
+            data.columns.tolist()
         )
 
         if st.button("Perform Sentiment Analysis"):
@@ -162,7 +157,7 @@ def main():
                 sentiment_bar_graph = generate_sentiment_bar_graph(data_with_sentiment, text_columns)
                 st.plotly_chart(sentiment_bar_graph, use_container_width=True)
 
-                st.subheader("GPT-4 Insights")
+                st.subheader("Key Takeways and Insights From Data")
                 insights = get_gpt4_insights(combined_text)
                 st.write(insights)
                 
