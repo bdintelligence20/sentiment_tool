@@ -101,7 +101,7 @@ def get_gpt4_insights(combined_text):
                 messages=[
                     {
                         "role": "system",
-                        "content": "You are a business analyst. Your job is to parse through the provided text and understand the content within the selected columns. You then must provide 12 focus areas of improvement. These areas are based on what is within the content and needs to be a reflection of the feedback."
+                        "content": "You are a business analyst. Your job is to parse through the provided text and understand the content within the selected columns. You then must provide 12 focus areas of improvement. These areas are based on what is within the content and needs to be a reflection of the feedback. Ensure you are as comprehensive as possible. Only use UK english"
                     },
                     {
                         "role": "user",
