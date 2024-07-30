@@ -38,7 +38,7 @@ def perform_sentiment_analysis(df, text_columns):
 
 @st.cache_data
 def combine_text(df, text_columns):
-    return " ".join(df[text_columns].fillna('').values.flatten())
+    return " ".join(df[text_columns].fillna('').applymap(str).values.flatten())
 
 @st.cache_data
 def generate_word_cloud(text):
@@ -101,7 +101,7 @@ def get_gpt4_insights(combined_text):
                 messages=[
                     {
                         "role": "system",
-                        "content": "You are a business analyst. Your job is to parse through the provided text and understand the content within the selected columns. You then must provide 12 focus areas of improvement. These areas are based on what is within the content and needs to be a reflection of the feedback. Ensure you are as comprehensive as possible. Only use UK english"
+                        "content": "You are a business analyst. Your job is to parse through the provided text and understand the content within the selected columns. You then must provide 12 focus areas of improvement. These areas are based on what is within the content and needs to be a reflection of the feedback. Use UK English. In addition to your comprehensive insight, add an example from the content for each one."
                     },
                     {
                         "role": "user",
@@ -125,7 +125,7 @@ def get_gpt4_insights(combined_text):
 
 def main():
     st.set_page_config(layout="wide")
-    st.title("Sentiment Analysis and Word Cloud Generator with GPT-4 Insights")
+    st.title("Sentiment Analysis and Word Cloud Generator with Insights")
 
     uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
     if uploaded_file is not None:
@@ -157,7 +157,7 @@ def main():
                 sentiment_bar_graph = generate_sentiment_bar_graph(data_with_sentiment, text_columns)
                 st.plotly_chart(sentiment_bar_graph, use_container_width=True)
 
-                st.subheader("Key Takeways and Insights From Data")
+                st.subheader("Insights")
                 insights = get_gpt4_insights(combined_text)
                 st.write(insights)
                 
