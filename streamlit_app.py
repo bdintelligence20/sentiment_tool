@@ -18,7 +18,7 @@ openai_api_key = os.getenv("OPENAI_API_KEY")
 if not openai_api_key:
     raise ValueError("OpenAI API Key not found in environment variables.")
 
-client = OpenAI()
+client = OpenAI(api_key=openai_api_key)
 
 # Initialize VADER sentiment analyzer
 vader_analyzer = SentimentIntensityAnalyzer()
